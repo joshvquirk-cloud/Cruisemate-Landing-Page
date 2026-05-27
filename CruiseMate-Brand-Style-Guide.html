@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CruiseMate Brand Style Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #f5f7f6;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #0d3d1a 0%, #1a6b2f 100%);
+      color: white;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    
+    header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    
+    header p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+    
+    nav {
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    
+    nav a {
+      color: #1a6b2f;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    nav a:hover {
+      color: #2ecc71;
+    }
+    
+    section {
+      padding: 60px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: #1a6b2f;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    
+    .color-swatch {
+      border-radius: 8px;
+      padding: 24px;
+      color: white;
+      text-align: center;
+    }
+    
+    .color-swatch p {
+      font-size: 12px;
+      opacity: 0.9;
+      margin-top: 8px;
+    }
+    
+    .green-dark { background: #0d3d1a; }
+    .green-main { background: #1a6b2f; }
+    .green-bright { background: #2ecc71; }
+    .green-light { background: #d4edda; color: #1a6b2f; }
+    .grey-bg { background: #f5f7f6; color: #2c3e50; border: 1px solid #e0e0e0; }
+    .grey-text { background: #2c3e50; }
+    .white { background: #ffffff; color: #2c3e50; border: 1px solid #e0e0e0; }
+    
+    .typo-section {
+      margin-top: 24px;
+    }
+    
+    .typo-sample {
+      margin: 16px 0;
+      padding: 16px;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid #2ecc71;
+    }
+    
+    .sample-h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      letter-spacing: 2px;
+      color: #1a6b2f;
+    }
+    
+    .sample-h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 1px;
+      color: #1a6b2f;
+    }
+    
+    .sample-body {
+      font-size: 16px;
+      color: #2c3e50;
+      line-height: 1.8;
+    }
+    
+    .sample-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+    }
+    
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+    
+    .component-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 24px;
+    }
+    
+    .component-card h3 {
+      color: #1a6b2f;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    
+    .btn-primary {
+      background: #2ecc71;
+      color: #0d3d1a;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(46, 204, 113, 0.3);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #1a6b2f;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      border: 2px solid #1a6b2f;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+    }
+    
+    .version-box {
+      background: #e8f5e9;
+      border-left: 4px solid #2ecc71;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+    
+    .version-box h3 {
+      color: #1a6b2f;
+      margin-bottom: 8px;
+    }
+    
+    .version-box p {
+      font-size: 14px;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+    
+    .version-box ul {
+      margin-left: 20px;
+      font-size: 14px;
+    }
+    
+    .version-box li {
+      margin: 6px 0;
+    }
+    
+    .messaging-section {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    
+    .messaging-section h3 {
+      color: #1a6b2f;
+      margin-bottom: 16px;
+    }
+    
+    .message-group {
+      margin-bottom: 24px;
+    }
+    
+    .message-group strong {
+      color: #1a6b2f;
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    .message-group p {
+      font-size: 14px;
+      color: #2c3e50;
+      margin-bottom: 4px;
+    }
+    
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 32px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>CRUISEMATE</h1>
+  <p>Brand Style Guide — Rev 1.0</p>
+</header>
+
+<nav class="container">
+  <ul>
+    <li><a href="#colors">Colors</a></li>
+    <li><a href="#typography">Typography</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#messaging">Messaging</a></li>
+    <li><a href="#versions">Page Versions</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+<section id="colors">
+  <h2>Color Palette</h2>
+  <p>CruiseMate uses a green-primary system with neutral greys. Green signifies trust, infrastructure, and growth. All colors work in light and dark contexts.</p>
+  
+  <div class="color-grid">
+    <div class="color-swatch green-dark">
+      <strong>#0d3d1a</strong>
+      <p>Green Dark — Primary text, headlines, accents</p>
+    </div>
+    <div class="color-swatch green-main">
+      <strong>#1a6b2f</strong>
+      <p>Green Main — Backgrounds, strong accents</p>
+    </div>
+    <div class="color-swatch green-bright">
+      <strong>#2ecc71</strong>
+      <p>Green Bright — CTA buttons, highlights</p>
+    </div>
+    <div class="color-swatch green-light">
+      <strong>#d4edda</strong>
+      <p>Green Light — Subtle backgrounds, pills</p>
+    </div>
+    <div class="color-swatch grey-bg">
+      <strong>#f5f7f6</strong>
+      <p>Grey BG — Page background</p>
+    </div>
+    <div class="color-swatch white">
+      <strong>#ffffff</strong>
+      <p>White — Cards, overlays</p>
+    </div>
+    <div class="color-swatch grey-text">
+      <strong>#2c3e50</strong>
+      <p>Grey Text — Body text, secondary</p>
+    </div>
+  </div>
+</section>
+
+<section id="typography">
+  <h2>Typography</h2>
+  <p><strong>Font Stack:</strong> Bebas Neue (headlines), Outfit (body)</p>
+  
+  <div class="typo-section">
+    <h3 style="color: #1a6b2f; margin-bottom: 16px;">Heading Sizes</h3>
+    
+    <div class="typo-sample">
+      <div class="sample-label">H1 — Page Hero</div>
+      <div class="sample-h1">KNOW BEFORE THE ROAD CHANGES</div>
+      <p style="font-size: 12px; color: #666; margin-top: 8px;">56px, Bebas Neue, letter-spacing: 2px</p>
+    </div>
+    
+    <div class="typo-sample">
+      <div class="sample-label">H2 — Section Header</div>
+      <div class="sample-h2">How It Works</div>
+      <p style="font-size: 12px; color: #666; margin-top: 8px;">32px, Bebas Neue, letter-spacing: 1px</p>
+    </div>
+    
+    <div class="typo-sample">
+      <div class="sample-label">Body Text</div>
+      <div class="sample-body">We scan your local councils and transport authorities every week for permanent road changes that could affect your business or route planning.</div>
+      <p style="font-size: 12px; color: #666; margin-top: 8px;">16px, Outfit, line-height: 1.8, weight: 400</p>
+    </div>
+    
+    <div class="typo-sample">
+      <div class="sample-label">Small Label</div>
+      <p style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Business Name</p>
+      <p style="font-size: 12px; color: #666; margin-top: 8px;">13px, Outfit, font-weight: 600, uppercase</p>
+    </div>
+  </div>
+</section>
+
+<section id="components">
+  <h2>UI Components</h2>
+  
+  <div class="component-grid">
+    <div class="component-card">
+      <h3>Primary Button</h3>
+      <button class="btn-primary">Get Free Alerts</button>
+      <p style="font-size: 12px; color: #666; margin-top: 16px;">#2ecc71 background, green-dark text, 8px border-radius</p>
+    </div>
+    
+    <div class="component-card">
+      <h3>Secondary Button</h3>
+      <button class="btn-secondary">Learn More</button>
+      <p style="font-size: 12px; color: #666; margin-top: 16px;">Transparent background, green-main border</p>
+    </div>
+    
+    <div class="component-card">
+      <h3>Info Pill</h3>
+      <span style="display: inline-block; background: #d4edda; color: #1a6b2f; padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600;">Lane Closures</span>
+      <p style="font-size: 12px; color: #666; margin-top: 16px;">#d4edda background, green-dark text, 50px border-radius (pill shape)</p>
+    </div>
+    
+    <div class="component-card">
+      <h3>Badge</h3>
+      <span style="display: inline-block; background: rgba(46, 204, 113, 0.15); border: 1px solid rgba(46, 204, 113, 0.3); color: #1a6b2f; padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 600;">Free · Weekly · Sydney-Wide</span>
+      <p style="font-size: 12px; color: #666; margin-top: 16px;">Transparent green background with border accent</p>
+    </div>
+  </div>
+</section>
+
+<section id="messaging">
+  <h2>Messaging Framework</h2>
+  
+  <div class="messaging-section">
+    <h3>Brand Voice</h3>
+    
+    <div class="message-group">
+      <strong>Tone</strong>
+      <p>Direct, practical, confident. Speak to outcomes, not features.</p>
+    </div>
+    
+    <div class="message-group">
+      <strong>Positioning</strong>
+      <p>We solve "distribution failure, not information failure." Road changes are public. Getting them to you is the problem.</p>
+    </div>
+    
+    <div class="message-group">
+      <strong>Emotional Anchors (Rev 2+)</strong>
+      <p>• Relief: "You know before it affects you"</p>
+      <p>• Empowerment: "Stay ahead of disruption"</p>
+      <p>• Risk: Show what happens when you DON'T know (missed clients, delays, detours)</p>
+    </div>
+    
+    <div class="message-group">
+      <strong>Key Phrases (Avoid)</strong>
+      <p>• "Real-time" (we scan weekly, not live)</p>
+      <p>• "Never miss" (aspirational, not our guarantee)</p>
+      <p>• "Smart AI" (jargon; focus on outcomes)</p>
+    </div>
+    
+    <div class="message-group">
+      <strong>Key Phrases (Use)</strong>
+      <p>• "Know before..."</p>
+      <p>• "One email a week"</p>
+      <p>• "Permanent changes only"</p>
+      <p>• "Your location, your radius"</p>
+    </div>
+  </div>
+</section>
+
+<section id="versions">
+  <h2>Landing Page Versions</h2>
+  
+  <div class="version-box">
+    <h3>Revision 1 — Business Focus</h3>
+    <p><strong>Audience:</strong> Plumbers, electricians, hospitality, logistics, trades</p>
+    <p><strong>Status:</strong> LIVE</p>
+    <p><strong>File:</strong> nsw-road-notices-landing.html</p>
+    <p><strong>Features:</strong></p>
+    <ul>
+      <li>Dark green hero, animated roads + cars</li>
+      <li>Business-focused signup form (business name, industry, alert radius)</li>
+      <li>4-step "How It Works"</li>
+      <li>12 notice types (pills)</li>
+      <li>Stats bar (16 councils, 1 email/week, 100% free)</li>
+    </ul>
+    <p style="margin-top: 16px;"><strong>Known Issues:</strong> Pills display is awkward (needs grid refinement)</p>
+  </div>
+  
+  <div class="version-box" style="margin-top: 20px;">
+    <h3>Revision 2 — PLANNED</h3>
+    <p><strong>Two variants:</strong></p>
+    
+    <p style="margin-top: 16px;"><strong>V2.1 — Business (Refined)</strong></p>
+    <ul>
+      <li>Emotional messaging: "What happens when you don't know?"</li>
+      <li>Risk scenarios (missed clients, route delays, business disruption)</li>
+      <li>Relief copy ("Know before it hits you")</li>
+      <li>Cleaner pill grid layout</li>
+      <li>Bot status health badges (showing current council coverage)</li>
+    </ul>
+    
+    <p style="margin-top: 16px;"><strong>V2.2 — Consumer (New)</strong></p>
+    <ul>
+      <li>Target: Moms, tradies, daily commuters, gig workers</li>
+      <li>Emotional hook: "Plan your day without surprises"</li>
+      <li>Use cases: "Missing school pickups," "Client appointments disrupted," "Finding alternate routes"</li>
+      <li>Simpler form (just email + suburb, no business info)</li>
+      <li>Map-based visualization of affected areas</li>
+      <li>SMS notification option (not just email)</li>
+    </ul>
+  </div>
+  
+  <div class="version-box" style="margin-top: 20px;">
+    <h3>Future Versions</h3>
+    <p><strong>Revision 3+</strong> (roadmap)</p>
+    <ul>
+      <li>QLD variant landing pages</li>
+      <li>Victoria / SA / WA expansion</li>
+      <li>A/B testing variants</li>
+      <li>Integration with traffic reporter app</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 CruiseMate. Style Guide v1.0 — Last updated May 2026</p>
+</footer>
+
+</body>
+</html>

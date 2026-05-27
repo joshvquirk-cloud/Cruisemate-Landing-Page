@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CruiseMate Landing Page Changelog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #f5f7f6;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #0d3d1a 0%, #1a6b2f 100%);
+      color: white;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    
+    header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    
+    header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    
+    .meta {
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 20px 24px;
+    }
+    
+    .meta-item {
+      display: inline-block;
+      margin-right: 32px;
+      font-size: 14px;
+    }
+    
+    .meta-label {
+      color: #666;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 11px;
+    }
+    
+    .meta-value {
+      color: #1a6b2f;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    
+    main {
+      padding: 40px 0;
+    }
+    
+    .changelog-entry {
+      background: white;
+      border-left: 4px solid #2ecc71;
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .changelog-entry.current {
+      border-left-color: #1a6b2f;
+      background: #f0fdf4;
+    }
+    
+    .changelog-entry.planned {
+      border-left-color: #fbbf24;
+      background: #fffbeb;
+    }
+    
+    .entry-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .entry-version {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: #1a6b2f;
+      letter-spacing: 1px;
+    }
+    
+    .entry-status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .status-live {
+      background: #d4edda;
+      color: #1a6b2f;
+    }
+    
+    .status-planned {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    
+    .status-inprogress {
+      background: #cce5ff;
+      color: #1e40af;
+    }
+    
+    .entry-date {
+      font-size: 12px;
+      color: #999;
+      font-weight: 600;
+    }
+    
+    .entry-body {
+      margin-top: 16px;
+    }
+    
+    .entry-body h3 {
+      color: #1a6b2f;
+      font-size: 16px;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .entry-body h3:first-child {
+      margin-top: 0;
+    }
+    
+    .change-list {
+      list-style: none;
+      margin: 12px 0;
+    }
+    
+    .change-list li {
+      padding: 6px 0 6px 24px;
+      position: relative;
+      font-size: 14px;
+    }
+    
+    .change-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #2ecc71;
+      font-weight: bold;
+    }
+    
+    .change-list.issues li:before {
+      content: "⚠";
+      color: #f97316;
+    }
+    
+    .change-list.next li:before {
+      content: "→";
+      color: #1a6b2f;
+    }
+    
+    .entry-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    
+    .meta-block {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .meta-block strong {
+      color: #1a6b2f;
+      display: block;
+      margin-bottom: 6px;
+    }
+    
+    .meta-block p {
+      color: #666;
+      margin: 4px 0;
+    }
+    
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 32px;
+      margin-top: 60px;
+    }
+    
+    .summary-box {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+    
+    .summary-box h2 {
+      color: #1a6b2f;
+      margin-bottom: 16px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>CHANGELOG</h1>
+  <p>CruiseMate Landing Page Versions & Updates</p>
+</header>
+
+<div class="meta container">
+  <div class="meta-item">
+    <div class="meta-label">Current Version</div>
+    <div class="meta-value">Revision 1</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Last Updated</div>
+    <div class="meta-value">27 May 2026</div>
+  </div>
+  <div class="meta-item">
+    <div class="meta-label">Status</div>
+    <div class="meta-value">Live</div>
+  </div>
+</div>
+
+<main class="container">
+
+<div class="summary-box">
+  <h2>Overview</h2>
+  <p>This changelog tracks all versions of the CruiseMate landing page, including design changes, feature updates, bug fixes, and known issues. Revisions are numbered sequentially. Two variants exist: Business (Revision 1) and Consumer (planned Revision 2.2).</p>
+  <p style="margin-top: 12px;"><strong>Style Guide:</strong> All design decisions are locked in <code>CruiseMate-Brand-Style-Guide.html</code>. Reference before making visual changes.</p>
+</div>
+
+<!-- REVISION 1 -->
+<div class="changelog-entry current">
+  <div class="entry-header">
+    <div class="entry-version">Revision 1</div>
+    <span class="entry-status status-live">Live</span>
+    <span class="entry-date">27 May 2026</span>
+  </div>
+  
+  <div class="entry-body">
+    <h3>Variant: Business</h3>
+    <p>Primary landing page for businesses, trades, and logistics professionals.</p>
+    
+    <h3>What's Included</h3>
+    <ul class="change-list">
+      <li>Dark green hero section with "KNOW BEFORE THE ROAD CHANGES" headline</li>
+      <li>Animated SVG: flowing cars and roads (4-directional intersection)</li>
+      <li>White signup card with 6-field form (business name, contact name, email, suburb, industry, alert radius)</li>
+      <li>4-step "How It Works" cards</li>
+      <li>12 notice type pills (lane closures, one-way streets, etc.)</li>
+      <li>Stats bar: 16 councils, 1 email/week, 100% free</li>
+      <li>Scroll reveal animations on sections</li>
+      <li>Formspree integration (form ID placeholder)</li>
+      <li>Mobile responsive (tested 768px breakpoint)</li>
+      <li>Safari compatibility (-webkit-backdrop-filter added)</li>
+    </ul>
+    
+    <h3>Files</h3>
+    <ul class="change-list">
+      <li><code>nsw-road-notices-landing.html</code> — single-file, deploy-ready</li>
+      <li><code>CruiseMate-Brand-Style-Guide.html</code> — design system reference</li>
+    </ul>
+    
+    <div class="entry-meta">
+      <div class="meta-block">
+        <strong>Known Issues</strong>
+        <p>⚠ Pills grid layout is awkward (needs refinement in v2)</p>
+        <p>⚠ Formspree ID placeholder not filled (action item)</p>
+      </div>
+      <div class="meta-block">
+        <strong>Colors Used</strong>
+        <p>Green Dark: #0d3d1a</p>
+        <p>Green Main: #1a6b2f</p>
+        <p>Green Bright: #2ecc71</p>
+        <p>Grey BG: #f5f7f6</p>
+      </div>
+      <div class="meta-block">
+        <strong>Deployment</strong>
+        <p>Not yet deployed</p>
+        <p>Next: Fill Formspree ID, then upload to Netlify</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVISION 2.1 -->
+<div class="changelog-entry planned">
+  <div class="entry-header">
+    <div class="entry-version">Revision 2.1</div>
+    <span class="entry-status status-planned">Planned</span>
+    <span class="entry-date">TBD</span>
+  </div>
+  
+  <div class="entry-body">
+    <h3>Variant: Business (Refined)</h3>
+    <p>Enhanced version of Revision 1 with emotional messaging and risk scenarios.</p>
+    
+    <h3>Planned Changes</h3>
+    <ul class="change-list">
+      <li>Add emotional anchor section: "What happens when you don't know?"</li>
+      <li>Include 2-3 risk scenarios (missed clients, route delays, business disruption)</li>
+      <li>Relief-focused copy: "Know before it hits you"</li>
+      <li>Refactor pills grid: use 4-column layout, cleaner spacing</li>
+      <li>Add bot health badges showing live council coverage status</li>
+      <li>Consider testimonial or case study section (optional)</li>
+      <li>A/B test headline variations</li>
+    </ul>
+    
+    <h3>What Stays</h3>
+    <ul class="change-list">
+      <li>Hero section structure (may adjust animation)</li>
+      <li>Signup form fields (no change)</li>
+      <li>Color palette and typography (locked in style guide)</li>
+      <li>Formspree integration</li>
+    </ul>
+    
+    <div class="entry-meta">
+      <div class="meta-block">
+        <strong>Target Audience</strong>
+        <p>Plumbers, electricians, tradies, hospitality, logistics</p>
+      </div>
+      <div class="meta-block">
+        <strong>Success Metric</strong>
+        <p>Conversion rate improvement vs v1 (baseline TBD)</p>
+      </div>
+      <div class="meta-block">
+        <strong>Dependencies</strong>
+        <p>Bot health API / live council data feed</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVISION 2.2 -->
+<div class="changelog-entry planned">
+  <div class="entry-header">
+    <div class="entry-version">Revision 2.2</div>
+    <span class="entry-status status-planned">Planned</span>
+    <span class="entry-date">TBD</span>
+  </div>
+  
+  <div class="entry-body">
+    <h3>Variant: Consumer (New)</h3>
+    <p>Dedicated landing page for individuals, commuters, moms, gig workers, tradies (self-employed).</p>
+    
+    <h3>Key Differences from Rev 1</h3>
+    <ul class="change-list">
+      <li>Emotional hook: "Plan your day without surprises"</li>
+      <li>Use cases: missing school pickups, client appointment delays, finding alternate routes</li>
+      <li>Simplified form: email + suburb only (no business info)</li>
+      <li>Map visualization showing affected areas in your radius</li>
+      <li>SMS notification option (in addition to email)</li>
+      <li>Warmer, less corporate tone in copy</li>
+      <li>Real-world scenarios instead of business talk</li>
+    </ul>
+    
+    <h3>Design Changes</h3>
+    <ul class="change-list">
+      <li>Hero may use different color (warmer green or secondary accent)</li>
+      <li>Icons for use cases (car, clock, family, briefcase)</li>
+      <li>Testimonials from consumers (commuters, parents, self-employed)</li>
+      <li>Notification preference toggle (email/SMS/both)</li>
+    </ul>
+    
+    <div class="entry-meta">
+      <div class="meta-block">
+        <strong>Target Audience</strong>
+        <p>Moms, daily commuters, gig workers, self-employed tradies, delivery drivers</p>
+      </div>
+      <div class="meta-block">
+        <strong>Unique Value</strong>
+        <p>Personal route planning, not business operations</p>
+      </div>
+      <div class="meta-block">
+        <strong>File Name</strong>
+        <p>nsw-road-notices-consumer.html</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FUTURE VERSIONS -->
+<div class="changelog-entry planned">
+  <div class="entry-header">
+    <div class="entry-version">Revision 3+</div>
+    <span class="entry-status status-planned">Roadmap</span>
+    <span class="entry-date">TBD</span>
+  </div>
+  
+  <div class="entry-body">
+    <h3>Future Variants & Expansions</h3>
+    
+    <h3>State Expansions</h3>
+    <ul class="change-list">
+      <li>QLD variant landing page (Brisbane, Gold Coast, Sunshine Coast focus)</li>
+      <li>Victoria, South Australia, Western Australia variants</li>
+      <li>Location selector on homepage (NSW/QLD/VIC/SA/WA)</li>
+    </ul>
+    
+    <h3>Feature Additions</h3>
+    <ul class="change-list">
+      <li>Traffic Reporter app integration banner</li>
+      <li>A/B testing framework (multiple headlines, CTAs, colors)</li>
+      <li>Live chat or help widget</li>
+      <li>Video demo of notification system</li>
+      <li>FAQ section addressing common objections</li>
+    </ul>
+    
+    <h3>Performance Optimizations</h3>
+    <ul class="change-list">
+      <li>Image optimization and lazy loading</li>
+      <li>Web analytics integration (Google Analytics 4)</li>
+      <li>Conversion tracking (Formspree → event logger)</li>
+      <li>Heatmap analysis (Hotjar or similar)</li>
+    </ul>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 CruiseMate. Changelog v1.0 — Last updated 27 May 2026</p>
+</footer>
+
+</body>
+</html>

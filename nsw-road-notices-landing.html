@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free weekly alerts for Sydney businesses when permanent road changes are announced near you. We scan 16 councils and Transport for NSW every Monday.">
+  <meta property="og:title" content="NSW Road Notices — Stay Ahead of the Change">
+  <meta property="og:description" content="Free weekly alerts for Sydney businesses when permanent road changes are announced near you.">
+  <meta property="og:type" content="website">
+  <title>NSW Road Notices — Stay Ahead of the Change</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #1a3d2b;
+      --green-mid: #2d6a4f;
+      --green-bright: #40c074;
+      --green-lite: #b7e4c7;
+      --grey-dark: #1e2328;
+      --grey-mid: #3a3f47;
+      --grey-lite: #8a929e;
+      --grey-bg: #f2f4f3;
+      --white: #ffffff;
+      --cream: #f7faf8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--grey-bg);
+      color: var(--grey-dark);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(26,61,43,0.92);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(64,192,116,0.15);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: var(--green-bright);
+    }
+    .nav-logo span { color: var(--white); }
+    .nav-cta {
+      background: var(--green-bright);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(64,192,116,0.4); }
+
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      color: var(--white);
+      padding: 120px 48px;
+      margin-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(64,192,116,0.15);
+      border: 1px solid rgba(64,192,116,0.3);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green-lite);
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green-bright);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 64px;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .accent { color: var(--green-bright); }
+
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin: 0 auto 48px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .signup-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      margin-top: 60px;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .signup-card h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--green-dark);
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    .signup-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--grey-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select {
+      padding: 12px 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--green-bright);
+      box-shadow: 0 0 0 3px rgba(64,192,116,0.1);
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    .submit-btn {
+      grid-column: 1 / -1;
+      background: var(--green-bright);
+      color: var(--green-dark);
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(64,192,116,0.3);
+    }
+
+    .section {
+      padding: 80px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: var(--green-dark);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .section p {
+      font-size: 16px;
+      color: var(--grey-lite);
+      max-width: 600px;
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+
+    .how-it-works {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .step-card {
+      background: var(--white);
+      padding: 32px;
+      border-radius: 12px;
+      border-left: 4px solid var(--green-bright);
+      text-align: left;
+    }
+
+    .step-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--green-bright);
+      margin-bottom: 12px;
+    }
+
+    .step-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--grey-dark);
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 14px;
+      color: var(--grey-lite);
+      margin-bottom: 0;
+    }
+
+    .notice-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .type-pill {
+      background: var(--green-lite);
+      color: var(--green-dark);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .stats-bar {
+      background: var(--green-bright);
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      flex-wrap: wrap;
+      border-radius: 12px;
+      margin-top: 48px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--green-dark);
+      letter-spacing: 1px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(26,61,43,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      background: var(--grey-dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 24px; }
+      .hero { padding: 80px 24px; }
+      h1 { font-size: 42px; }
+      .signup-card { padding: 32px 24px; }
+      .signup-form { grid-template-columns: 1fr; }
+      .section { padding: 60px 24px; }
+      .stats-bar { gap: 40px; }
+      .stat-num { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">NSW<span>Road</span>Notices</div>
+  <a href="#signup" class="nav-cta">Get Free Alerts</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Free · Weekly · Sydney-Wide
+    </div>
+
+    <h1>
+      KNOW BEFORE<br>
+      THE <span class="accent">ROAD CHANGES</span>
+    </h1>
+
+    <p class="hero-sub">
+      We scan 16 Sydney councils and Transport for NSW every Monday — and alert your business the moment a permanent road change is announced near you.
+    </p>
+
+    <div class="signup-card" id="signup">
+      <h2>Get Free Alerts</h2>
+      <form class="signup-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label for="biz-name">Business Name</label>
+          <input type="text" id="biz-name" name="business_name" placeholder="e.g. Harbour Plumbing Co." required>
+        </div>
+
+        <div class="form-group">
+          <label for="contact-name">Your Name</label>
+          <input type="text" id="contact-name" name="contact_name" placeholder="e.g. Sarah Chen" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="sarah@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="suburb">Suburb / LGA</label>
+          <input type="text" id="suburb" name="suburb" placeholder="e.g. Parramatta" required>
+        </div>
+
+        <div class="form-group">
+          <label for="industry">Industry Type</label>
+          <select id="industry" name="industry" required>
+            <option value="">Select your industry...</option>
+            <option value="plumbing">Plumbing &amp; Gas</option>
+            <option value="electrical">Electrical</option>
+            <option value="hospitality">Hospitality</option>
+            <option value="retail">Retail &amp; Shopping</option>
+            <option value="logistics">Logistics &amp; Delivery</option>
+            <option value="construction">Construction</option>
+            <option value="transport">Transport &amp; Courier</option>
+            <option value="healthcare">Healthcare &amp; Medical</option>
+            <option value="education">Education</option>
+            <option value="real_estate">Real Estate</option>
+            <option value="automotive">Automotive</option>
+            <option value="cafe">Cafe &amp; Restaurants</option>
+            <option value="events">Events &amp; Venues</option>
+            <option value="beauty">Beauty &amp; Wellness</option>
+            <option value="finance">Finance &amp; Professional</option>
+            <option value="government">Government</option>
+            <option value="manufacturing">Manufacturing</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="radius">Alert Radius</label>
+          <select id="radius" name="radius" required>
+            <option value="">Select radius...</option>
+            <option value="2km">2 km</option>
+            <option value="5km">5 km</option>
+            <option value="10km">10 km</option>
+            <option value="all">All Sydney</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Sign Me Up</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <h2>How It Works</h2>
+  <p>Simple. Automatic. Every Monday morning.</p>
+
+  <div class="how-it-works">
+    <div class="step-card reveal">
+      <div class="step-number">1</div>
+      <h3>We Scan</h3>
+      <p>Every Monday, we check 16 Sydney councils and Transport for NSW for new permanent road changes.</p>
+    </div>
+
+    <div class="step-card reveal">
+      <div class="step-number">2</div>
+      <h3>We Verify</h3>
+      <p>Our AI filters for permanent changes only — ignoring temporary roadworks and construction updates.</p>
+    </div>
+
+    <div class="step-card reveal">
+      <div class="step-number">3</div>
+      <h3>We Notify</h3>
+      <p>Changes within your radius get sent to you. One email per week, every Monday morning.</p>
+    </div>
+
+    <div class="step-card reveal">
+      <div class="step-number">4</div>
+      <h3>You Stay Ahead</h3>
+      <p>Plan your routes, update your website, brief your team — before your customers find out.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <h2>What We Track</h2>
+  <p>12 types of permanent road infrastructure changes.</p>
+
+  <div class="notice-types reveal">
+    <div class="type-pill">Lane Closures</div>
+    <div class="type-pill">One-Way Streets</div>
+    <div class="type-pill">Road Widening</div>
+    <div class="type-pill">New Intersections</div>
+    <div class="type-pill">Bridge Work</div>
+    <div class="type-pill">Tunnel Projects</div>
+    <div class="type-pill">Pedestrian Zones</div>
+    class="type-pill">Bike Lanes</div>
+    <div class="type-pill">Parking Changes</div>
+    <div class="type-pill">Speed Limit Changes</div>
+    <div class="type-pill">Access Restrictions</div>
+    <div class="type-pill">Toll Changes</div>
+  </div>
+
+  <div class="stats-bar reveal">
+    <div class="stat">
+      <div class="stat-num">16</div>
+      <div class="stat-label">Sydney Councils</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Email per Week</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Free Forever</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 NSW Road Notices. Helping Sydney businesses stay ahead of road changes.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
